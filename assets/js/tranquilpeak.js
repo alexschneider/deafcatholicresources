@@ -560,7 +560,7 @@
   $(document).ready(function () {
     var tz = moment.tz.guess(true);
     $('.guess-timezone').each(function () {
-      var time = $(this).text();
+      var time = $(this).text().trim();
       var newTime = moment(time).tz(tz).format('MMMM Do YYYY, h:mm:ss a zz');
       $(this).text(newTime);
     });
