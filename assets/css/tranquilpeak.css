@@ -1370,8 +1370,7 @@ blockquote {
 .archive .archive-posts {
   list-style: none; }
   .archive .archive-posts .archive-post .archive-post-title {
-    margin-left: 10px;
-    color: #5d686f; }
+    margin-left: 10px; }
     .archive .archive-posts .archive-post .archive-post-title:hover {
       text-decoration: underline; }
   .archive .archive-posts .archive-post .archive-post-date {
