@@ -555,7 +555,17 @@
     });
   });
 })(jQuery);
-;(function($) {
+;(function ($) {
+  'use strict';
+  $(document).ready(function () {
+    var tz = moment.tz.guess(true);
+    $('.guess-timezone').each(function () {
+      var time = $(this).text();
+      var newTime = moment(time).tz(tz).format('MMMM Do YYYY, h:mm:ss a zz');
+      $(this).text(newTime);
+    });
+  });
+})(jQuery);;(function($) {
   'use strict';
 
   // Hide the header when the user scrolls down, and show it when he scrolls up
@@ -1352,7 +1362,7 @@
     animateTabbedCodeBlocks($('.codeblock--tabbed'));
   });
 })(jQuery);
-;(function($) {
+;(function ($) {
   'use strict';
 
   // Filter posts by using their categories on categories page : `/categories`
@@ -1362,7 +1372,7 @@
    * @param {String} tagsArchivesElem
    * @constructor
    */
-  var TagsFilter = function(tagsArchivesElem) {
+  var TagsFilter = function (tagsArchivesElem) {
     this.$form = $(tagsArchivesElem).find('#filter-form');
     this.$inputSearch = $(tagsArchivesElem + ' #filter-form input[name=tag]');
     this.$archiveResult = $(tagsArchivesElem).find('.archive-result');
@@ -1384,16 +1394,16 @@
      * Run TagsFilter feature
      * @return {void}
      */
-    run: function() {
+    run: function () {
       var self = this;
 
       // Detect keystroke of the user
-      self.$inputSearch.keyup(function() {
+      self.$inputSearch.keyup(function () {
         self.filter(self.getSearch());
       });
 
       // Block submit action
-      self.$form.submit(function(e) {
+      self.$form.submit(function (e) {
         e.preventDefault();
       });
     },
@@ -1402,7 +1412,7 @@
      * Get the search entered by user
      * @returns {String} the name of tag entered by the user
      */
-    getSearch: function() {
+    getSearch: function () {
       return this.$inputSearch.val().toLowerCase();
     },
 
@@ -1411,7 +1421,7 @@
      * @param {String} tag - name of a tag
      * @return {void}
      */
-    filter: function(tag) {
+    filter: function (tag) {
       if (tag === '') {
         this.showAll();
         this.showResult(-1);
@@ -1428,7 +1438,7 @@
      * @param {Number} numbTags - Number of tags found
      * @return {void}
      */
-    showResult: function(numbTags) {
+    showResult: function (numbTags) {
       if (numbTags === -1) {
         this.$archiveResult.html('').hide();
       }
@@ -1448,7 +1458,7 @@
      * @param {String} tag
      * @returns {Number}
      */
-    countTags: function(tag) {
+    countTags: function (tag) {
       return $(this.posts + '[data-' + this.dataTag + '*=\'' + tag + '\']').length;
     },
 
@@ -1457,7 +1467,7 @@
      * @param {String} tag - name of a tag
      * @return {void}
      */
-    showPosts: function(tag) {
+    showPosts: function (tag) {
       $(this.tags + '[data-' + this.dataTag + '*=\'' + tag + '\']').show();
       $(this.posts + '[data-' + this.dataTag + '*=\'' + tag + '\']').show();
     },
@@ -1466,7 +1476,7 @@
      * Show all tags and all posts
      * @return {void}
      */
-    showAll: function() {
+    showAll: function () {
       this.$tags.show();
       this.$posts.show();
     },
@@ -1475,13 +1485,13 @@
      * Hide all tags and all posts
      * @return {void}
      */
-    hideAll: function() {
+    hideAll: function () {
       this.$tags.hide();
       this.$posts.hide();
     }
   };
 
-  $(document).ready(function() {
+  $(document).ready(function () {
     if ($('#tags-archives').length) {
       var tagsFilter = new TagsFilter('#tags-archives');
       tagsFilter.run();
